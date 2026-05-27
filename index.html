@@ -418,6 +418,13 @@ footer p{font-size:.72rem;}
   </div>
   <div class="grid" id="grid">
 
+    <!-- ROYAL MEATS BBQ -->
+    <div class="card" data-cat="outdoor branding" onclick="openRoyalMeats(0)" style="cursor:pointer;">
+      <div class="card-thumb" style="padding:0;"><img src="assets/images/royalmeats-thumb.jpg" alt="Royal Meats BBQ Food Truck Wrap" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+      <div class="card-body"><div class="card-tag">Outdoor · Vehicle Wrap</div><div class="card-title">Royal Meats BBQ — Food Truck Wrap</div><div class="card-desc">Full vehicle wrap design for a Balkan & Mediterranean BBQ food truck — dramatic AI-generated food visuals on a dark premium canvas.</div><span class="card-link">View Gallery →</span></div>
+    </div>
+
+
     <!-- WEB -->
     <div class="card" data-cat="web" onclick="window.open('https://www.figma.com/design/Dln7N7gZEbh7ASVrF9rFiD/WeUsThem-Inc.-Test-file--Cancer-Society?node-id=0-1&t=LvNnVS2lhxnFApHo-1','_blank')" style="cursor:pointer;">
       <div class="card-thumb"><img src="assets/images/img_2.jpeg" alt="Canadian Cancer Society Web Redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"/></div>
@@ -721,6 +728,17 @@ const caseStudies = {
     sections: [
       { heading: "The Challenge", text: "LG needed a conceptual ad for their TwinWash technology, which allows two separate laundry loads to run simultaneously. The core message: efficiency through parallel action. The challenge was to clearly communicate the product functionality without the visual metaphor confusing the message." }
     ]
+  },
+  royalmeats: {
+    tag: "Outdoor · Vehicle Wrap",
+    title: "Royal Meats BBQ — Food Truck Wrap Design",
+    hasGallery: true,
+    sections: [
+      { heading: "The Challenge", text: "Royal Meats BBQ is an established Balkan and Mediterranean BBQ restaurant expanding into the food truck business. The project required a full vehicle wrap concept with no client-supplied photography, creating the challenge of producing high-impact visuals from scratch that would capture attention on a moving vehicle." },
+      { heading: "The Solution", text: "Used AI image generation to create moody, appetite-driven food visuals that matched the brand's identity. Rich grilled meats — steaks, lamb chops, sausages, and skewers — were set against a dramatic dark background with fire elements at the base. Every panel was designed with high contrast, bold visual hierarchy, and the brand mark and tagline leading, with phone number and website prominent on all sides." },
+      { heading: "Design Strategy", text: "A moving vehicle has about three seconds to make an impression. The dark premium aesthetic was chosen to separate Royal Meats from typical colorful food trucks and communicate quality instantly. The layout ensures key information is readable from any angle — side, front, back, and rear doors." },
+      { heading: "The Result", text: "A cohesive, four-panel wrap system that turns the food truck into a rolling billboard. The dramatic fire-and-meat imagery creates an irresistible appetite appeal, while the dark premium palette positions Royal Meats as a quality brand before anyone reads a single word." }
+    ]
   }
 };
 
@@ -824,6 +842,12 @@ document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') printNav(-1);
     if (e.key === 'Escape') closePrintLightbox();
   }
+  if (document.getElementById('royalmeats-lightbox').classList.contains('open')) {
+    if (e.key === 'ArrowRight') royalmeatsNav(1);
+    if (e.key === 'ArrowLeft') royalmeatsNav(-1);
+    if (e.key === 'Escape') closeRoyalMeats();
+  }
+  if (document.getElementById('royalmeats-case-modal').classList.contains('open') && e.key === 'Escape') closeRoyalMeatsCase();
   if (document.getElementById('comera-lightbox').classList.contains('open')) {
     if (e.key === 'ArrowRight') cameraNav(1);
     if (e.key === 'ArrowLeft') cameraNav(-1);
@@ -997,6 +1021,44 @@ function handleFormSubmit(e){
   }, 1000);
 }
 function handleSubmit(e){ handleFormSubmit(e); }
+
+// ROYAL MEATS LIGHTBOX
+const royalmeatsImgs = [
+  "assets/images/royalmeats-front.jpg",
+  "assets/images/royalmeats-back.jpg",
+  "assets/images/royalmeats-left.jpg",
+  "assets/images/royalmeats-right.jpg"
+];
+let royalmeatsIdx = 0;
+function openRoyalMeats(idx) {
+  royalmeatsIdx = idx || 0;
+  document.getElementById("royalmeats-lb-img").src = royalmeatsImgs[royalmeatsIdx];
+  document.getElementById("royalmeats-counter").textContent = (royalmeatsIdx+1) + " / " + royalmeatsImgs.length;
+  document.getElementById("royalmeats-lightbox").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeRoyalMeats() {
+  document.getElementById("royalmeats-lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+  // Show case study modal after closing lightbox
+  setTimeout(function() {
+    document.getElementById("royalmeats-case-modal").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }, 300);
+}
+function royalmeatsNav(dir) {
+  royalmeatsIdx = (royalmeatsIdx + dir + royalmeatsImgs.length) % royalmeatsImgs.length;
+  document.getElementById("royalmeats-lb-img").src = royalmeatsImgs[royalmeatsIdx];
+  document.getElementById("royalmeats-counter").textContent = (royalmeatsIdx+1) + " / " + royalmeatsImgs.length;
+}
+function closeRoyalMeatsCase() {
+  document.getElementById("royalmeats-case-modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function closeRoyalMeatsCaseOutside(e) {
+  if (e.target === document.getElementById("royalmeats-case-modal")) closeRoyalMeatsCase();
+}
+
 </script>
 
 <!-- FRESHSLICE MODAL -->
@@ -1098,5 +1160,36 @@ function handleSubmit(e){ handleFormSubmit(e); }
   <button class="lightbox-next" onclick="cameraNav(1)">&#8250;</button>
   <div class="lightbox-counter" id="comera-counter">1 / 11</div>
 </div>
+<!-- ROYAL MEATS LIGHTBOX -->
+<div class="lightbox-overlay" id="royalmeats-lightbox">
+  <button class="lightbox-close" onclick="closeRoyalMeats()">✕</button>
+  <button class="lightbox-prev" onclick="royalmeatsNav(-1)">&#8249;</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="royalmeats-lb-img" src="" alt="Royal Meats BBQ"/>
+  </div>
+  <button class="lightbox-next" onclick="royalmeatsNav(1)">&#8250;</button>
+  <div class="lightbox-counter" id="royalmeats-counter">1 / 4</div>
+</div>
+
+<!-- ROYAL MEATS CASE STUDY MODAL -->
+<div class="fs-modal-overlay" id="royalmeats-case-modal" onclick="closeRoyalMeatsCaseOutside(event)">
+  <div class="fs-modal-box" id="royalmeats-case-box">
+    <button class="fs-modal-close" onclick="closeRoyalMeatsCase()">✕</button>
+    <div class="fs-case-study">
+      <div class="fs-tag">Outdoor · Vehicle Wrap</div>
+      <div class="fs-title">Royal Meats BBQ — Food Truck Wrap Design</div>
+      <div class="fs-divider"></div>
+      <div class="fs-section-title">The Challenge</div>
+      <p class="fs-text">Royal Meats BBQ is an established Balkan and Mediterranean BBQ restaurant expanding into the food truck business. The project required a full vehicle wrap concept with no client-supplied photography, creating the challenge of producing high-impact visuals from scratch that would capture attention on a moving vehicle.</p>
+      <div class="fs-section-title">The Solution</div>
+      <p class="fs-text">Used AI image generation to create moody, appetite-driven food visuals that matched the brand's identity. Rich grilled meats — steaks, lamb chops, sausages, and skewers — were set against a dramatic dark background with fire elements at the base. Every panel was designed with high contrast, bold visual hierarchy, and the brand mark and tagline leading, with phone number and website prominent on all sides.</p>
+      <div class="fs-section-title">Design Strategy</div>
+      <p class="fs-text">A moving vehicle has about three seconds to make an impression. The dark premium aesthetic was chosen to separate Royal Meats from typical colorful food trucks and communicate quality instantly. The layout ensures key information is readable from any angle — side, front, back, and rear doors.</p>
+      <div class="fs-section-title">The Result</div>
+      <p class="fs-text">A cohesive, four-panel wrap system that turns the food truck into a rolling billboard. The dramatic fire-and-meat imagery creates an irresistible appetite appeal, while the dark premium palette positions Royal Meats as a quality brand before anyone reads a single word.</p>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
