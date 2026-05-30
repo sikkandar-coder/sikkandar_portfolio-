@@ -110,8 +110,8 @@ section{padding:6rem 6%;}
 .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem;}
 .filter-btn{padding:.45rem 1.1rem;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;}
 .filter-btn:hover,.filter-btn.active{background:var(--rust);border-color:var(--rust);color:#fff;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5px;}
-.card{background:var(--navy2);overflow:hidden;transition:transform .3s;position:relative;border:1px solid rgba(255,255,255,.04);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding:0 0 20px 0;}
+.card{background:var(--navy2);overflow:hidden;transition:transform .3s;position:relative;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
 .card:hover{transform:translateY(-4px);}
 .card-thumb{width:100%;aspect-ratio:4/3;background:var(--navy3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
@@ -427,6 +427,12 @@ footer p{font-size:.72rem;}
     </div>
 
 
+    <!-- SOFTMOC -->
+    <div class="card" data-cat="web" onclick="window.open('https://www.figma.com/proto/htqlMJQKQJ11sjCowkARJe/SOFTMOC?page-id=0%3A1&node-id=41-720&viewport=-443%2C271%2C0.2&t=ZvEJmZsUH67U7osv-1&scaling=contain&content-scaling=fixed','_blank')" style="cursor:pointer;">
+      <div class="card-thumb"><img src="assets/images/SOFTMOC-THUMBNAIL.jpg" alt="SoftMoc UI/UX Design" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+      <div class="card-body"><div class="card-tag">UI/UX · Web Design</div><div class="card-title">SoftMoc — UI/UX Prototype</div><div class="card-desc">Interactive Figma prototype for SoftMoc — a Canadian footwear retail brand with a modern, seamless shopping experience.</div><span class="card-link">View Prototype →</span></div>
+    </div>
+
     <!-- WEB -->
     <div class="card" data-cat="web" onclick="window.open('https://www.figma.com/design/Dln7N7gZEbh7ASVrF9rFiD/WeUsThem-Inc.-Test-file--Cancer-Society?node-id=0-1&t=LvNnVS2lhxnFApHo-1','_blank')" style="cursor:pointer;">
       <div class="card-thumb"><img src="assets/images/img_2.jpeg" alt="Canadian Cancer Society Web Redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"/></div>
@@ -520,7 +526,7 @@ footer p{font-size:.72rem;}
     </div>
 
     <div class="card" data-cat="editorial" onclick="openModal('sourcemag')" style="cursor:pointer;">
-      <div class="card-thumb" style="padding:0;"><img src="assets/images/magazine1.jpg" alt="The Source Magazine" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"/></div>
+      <div class="card-thumb" style="padding:0;"><img src="assets/images/SOURCEMAG_THUMB.png" alt="The Source Magazine" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"/></div>
       <div class="card-body"><div class="card-tag">Editorial · Print</div><div class="card-title">The Source Magazine</div><div class="card-desc">Bilingual English-Arabic magazine — Visual direction, layout design & photography. Al Ain, UAE. 2012–2015.</div><span class="card-link">View Case Study →</span></div>
     </div>
 
